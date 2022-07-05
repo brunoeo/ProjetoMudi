@@ -1,19 +1,32 @@
 package br.com.alura.mvc.mudi.model;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
+@Entity
 public class Pedido {
-	
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	private String nomeProduto;
 	private BigDecimal valorNegociado;
 	private String dataDaEntrega;
 	private String urlProduto;
 	private String urlImagem;
 	private String descricao;
-	
-	
-	
+
+	public Pedido() {
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 	public Pedido(String nomeProduto, BigDecimal valorNegociado, String dataDaEntrega, String urlProduto,
 			String urlImagem, String descricao) {
 		super();
