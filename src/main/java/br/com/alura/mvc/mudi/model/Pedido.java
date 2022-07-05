@@ -2,18 +2,20 @@ package br.com.alura.mvc.mudi.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 public class Pedido {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String nomeProduto;
 	private BigDecimal valorNegociado;
-	private String dataDaEntrega;
+	private LocalDate dataDaEntrega;
 	private String urlProduto;
 	private String urlImagem;
 	private String descricao;
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status;
 
 	public Pedido() {
 	}
@@ -27,7 +29,7 @@ public class Pedido {
 	}
 
 
-	public Pedido(String nomeProduto, BigDecimal valorNegociado, String dataDaEntrega, String urlProduto,
+	public Pedido(String nomeProduto, BigDecimal valorNegociado, LocalDate dataDaEntrega, String urlProduto,
 			String urlImagem, String descricao) {
 		super();
 		this.nomeProduto = nomeProduto;
@@ -50,10 +52,10 @@ public class Pedido {
 	public void setValorNegociado(BigDecimal valorNegociado) {
 		this.valorNegociado = valorNegociado;
 	}
-	public String getDataDaEntrega() {
+	public LocalDate getDataDaEntrega() {
 		return dataDaEntrega;
 	}
-	public void setDataDaEntrega(String dataDaEntrega) {
+	public void setDataDaEntrega(LocalDate dataDaEntrega) {
 		this.dataDaEntrega = dataDaEntrega;
 	}
 	public String getUrlProduto() {
@@ -74,8 +76,13 @@ public class Pedido {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	
-	
-	
+
+
+	public StatusPedido getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusPedido status) {
+		this.status = status;
+	}
 }
