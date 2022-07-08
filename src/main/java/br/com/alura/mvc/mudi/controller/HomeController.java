@@ -1,5 +1,6 @@
 package br.com.alura.mvc.mudi.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import br.com.alura.mvc.mudi.model.StatusPedido;
@@ -24,9 +25,9 @@ public class HomeController {
 	PedidoRepository pedidoRepository;
 
 	@GetMapping
-	public String home(Model model){
+	public String home(Model model, Principal principal){
 
-		List<Pedido> pedidos = pedidoRepository.findAll();
+		List<Pedido> pedidos = pedidoRepository.findAllByUsuario(principal.getName());
 
 		model.addAttribute("pedidos", pedidos);
 		
