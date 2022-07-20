@@ -1,9 +1,13 @@
 package br.com.alura.mvc.mudi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Pedido {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +18,18 @@ public class Pedido {
 	private String urlProduto;
 	private String urlImagem;
 	private String descricao;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+	private List<Oferta> ofertas;
+
+	public List<Oferta> getOfertas() {
+		return ofertas;
+	}
+
+	public void setOfertas(List<Oferta> ofertas) {
+		this.ofertas = ofertas;
+	}
+
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
 	@ManyToOne(fetch = FetchType.LAZY)
