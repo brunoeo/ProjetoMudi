@@ -9,7 +9,7 @@ public class Oferta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pedidoId;
+    private Long id;
     private BigDecimal valor;
     private LocalDate dataDaEntrega;
     private String comentario;
@@ -26,11 +26,11 @@ public class Oferta {
     }
 
     public Long getPedidoId() {
-        return pedidoId;
+        return id;
     }
 
-    public void setPedidoId(Long pedidoId) {
-        this.pedidoId = pedidoId;
+    public void setPedidoId(Long id) {
+        this.id = id;
     }
 
     public BigDecimal getValor() {

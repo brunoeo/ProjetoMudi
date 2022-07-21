@@ -1,5 +1,6 @@
 package br.com.alura.mvc.mudi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -19,6 +20,13 @@ public class Pedido {
 	private String urlImagem;
 	private String descricao;
 
+	@Enumerated(EnumType.STRING)
+	private StatusPedido status;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private User user;
+
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
 	private List<Oferta> ofertas;
 
@@ -30,10 +38,6 @@ public class Pedido {
 		this.ofertas = ofertas;
 	}
 
-	@Enumerated(EnumType.STRING)
-	private StatusPedido status;
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
 
 	public User getUser() {
 		return user;
